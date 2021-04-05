@@ -13,7 +13,6 @@ echo 'Mes Friends :' . "<br>";
 foreach ($friends as $friend) {
     echo $friend['firstname'] . ' ' . $friend['lastname'] . "<br>";
 }
-echo '<br> . <br>';
 
 if (!empty($_GET) && !isset($_GET['submit'])) {
 
