@@ -4,10 +4,22 @@ require_once "connec.php";
 
 $pdo = new \PDO(DSN , USER, PASS);
 
+$query = "SELECT * FROM friend";
+$statement = $pdo->query($query);
+$friends = $statement->fetchAll();
+
+// var_dump($friends);
+
+echo 'Mes Friends :' . "<br>";
+foreach ($friends as $friend) {
+    echo $friend['firstname'] . ' ' . $friend['lastname'] . "<br>";
+}
+echo '<br> . <br>';
+
+if (!empty($_GET) && isset($_GET['submit'])) {
 
 
 $data = array_map('trim', $_GET);
-//Variables
 $firstname = $data['firstname'];
 $lastname = $data['lastname'];
 $errors = [];
@@ -18,15 +30,28 @@ if (empty($firstname)) {
  if (empty($lastname)) {
     $errors[] = 'Le nom est requis';
  }
+ if (strlen($firstname)>45){
+    $errors[]= "Le nom est trop long";
+}
+if (strlen($lastname)>45){
+    $errors[]= "Le prénom est trop long";
+}
 
- if (!empty($errors)) {
-    for($i=0;$i< count($errors);$i++) {
-      echo $errors[$i]. "<br>";
-    }
+ if (empty($errors)) {
+
+    $query = "INSERT INTO friend (`lastname`, `firstname`) VALUES (:lastname,:firstname)";
+
+    $statement = $pdo->prepare($query);
+    $statement->bindValue(":lastname", $lastname);
+    $statement->bindValue(":firstname", $firstname);
+    $statement->execute();
+
+    header('Location:index.php');
+
   } else {
     echo "<br>Merci $lastname $firstname pour votre ajout.</br>" ;
   }
-  
+}
 ?>
 
 <!DOCTYPE html>
