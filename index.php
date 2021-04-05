@@ -9,11 +9,6 @@ $statement = $pdo->query($query);
 $friends = $statement->fetchAll();
 
 
-echo 'Mes Friends :' . "<br>";
-foreach ($friends as $friend) {
-    echo $friend['firstname'] . ' ' . $friend['lastname'] . "<br>";
-}
-
 if (!empty($_GET) && !isset($_GET['submit'])) {
 
 
