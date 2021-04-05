@@ -23,7 +23,7 @@ if (empty($firstname)) {
  if (empty($lastname)) {
     $errors[] = 'Le nom est requis';
  }
- if (strlen($lasttname)>45){
+ if (strlen($lastname)>45){
     $errors[]= "Le nom est trop long";
 }
 if (strlen($firstname)>45){
