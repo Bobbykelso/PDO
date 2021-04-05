@@ -9,7 +9,7 @@ $statement = $pdo->query($query);
 $friends = $statement->fetchAll();
 
 
-if (!empty($_GET) && !isset($_GET['submit'])) {
+if (!empty($_GET) && isset($_GET['submit'])) {
 
 
 $data = array_map('trim', $_GET);
