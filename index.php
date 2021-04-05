@@ -45,10 +45,7 @@ if (strlen($lastname)>45){
     $statement->execute();
 
     header('Location:index.php');
-
-  } else {
-    echo "<br>Merci $lastname $firstname pour votre ajout.</br>" ;
-  }
+ } 
 }
 ?>
 
