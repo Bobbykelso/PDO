@@ -8,7 +8,6 @@ $query = "SELECT * FROM friend";
 $statement = $pdo->query($query);
 $friends = $statement->fetchAll();
 
-// var_dump($friends);
 
 echo 'Mes Friends :' . "<br>";
 foreach ($friends as $friend) {
@@ -16,7 +15,7 @@ foreach ($friends as $friend) {
 }
 echo '<br> . <br>';
 
-if (!empty($_GET) && isset($_GET['submit'])) {
+if (!empty($_GET) && !isset($_GET['submit'])) {
 
 
 $data = array_map('trim', $_GET);
